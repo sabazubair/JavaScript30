@@ -65,6 +65,17 @@
 
         const key = document.querySelector(`.key[data-key="${e.key}"]`);
         key.classList.add("playing");
+
+        function removeTransition(e) {
+          console.log(e);
+          if (e.propertyName !== "transform") return;
+          this.classList.remove("playing");
+        }
+
+        const keys = document.querySelectorAll(".key");
+        keys.forEach((key) =>
+          key.addEventListener("transitionend", removeTransition)
+        );
       });
     </script>
   </body>
